@@ -6,47 +6,47 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ["Mr", "Mrs", "Miss"],
-        trim:true
+        trim: true
     },
     name: {
         type: String,
         required: true,
-        trim:true
+        trim: true
     },
     phone: {
         type: String,
         required: true,
         unique: true,
-        trim:true
+        trim: true
     },
     email: {
         type: String,
         required: true,
-        lowercase:true,
+        lowercase: true,
         unique: true,
-        trim:true
+        trim: true
 
     },
     password: {
         type: String,
         required: true,
-        name: {type: String, min: 8 , max: 15},
-        trim:true
+        name: { type: String, min: 8, max: 15 },
+        trim: true
     },
     address: {
         street: {
             type: String,
-            trim:true
+            trim: true
         },
         city: {
             type: String,
-            trim:true
+            trim: true
         },
         pincode: {
             type: String,
-            trim:true
-          }
+            trim: true
+        }
     }
 
-},{timestamps:true})
+}, { timestamps: true })
 module.exports = mongoose.model("userbooks", userSchema)

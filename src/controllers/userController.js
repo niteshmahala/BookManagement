@@ -40,16 +40,16 @@ const userCreation = async function (req, res) {
             return res.status(400).send({ status: false, message: "password is required" })
         }
 
-        if(!validator.validAddress(address)){
+        if (!validator.validAddress(address)) {
             return res.status(400).send({ status: false, message: "Address cannot be empty if it is mentioned." })
         };
 
-       
+
 
         //checking if the address key is present in the request body then it must have the following keys with their values, If not then address won't get stored in DB.
-        if (address) { 
-            
-            if(typeof(address) != 'object'){
+        if (address) {
+
+            if (typeof (address) != 'object') {
                 return res.status(400).send({ status: false, message: "address must be in object." })
             }
             if (!validator.validString(address.street)) {
@@ -70,9 +70,9 @@ const userCreation = async function (req, res) {
             return res.status(400).send({ status: false, message: "Phone number already used" })
         }
 
-         //validating phone number of 10 digits only by using RegEx.
-         if (!/^[0-9]{10}$/.test(phone))
-         return res.status(400).send({ status: false, message: "Invalid Phone number.Phone number must be of 10 digits." })
+        //validating phone number of 10 digits only by using RegEx.
+        if (!/^[0-9]{10}$/.test(phone))
+            return res.status(400).send({ status: false, message: "Invalid Phone number.Phone number must be of 10 digits." })
 
         //searching email in DB to maintain uniqueness.
         const verifyEmail = await userModel.findOne({ email: email })
@@ -139,5 +139,5 @@ const loginUser = async function (req, res) {
         return res.status(500).send({ status: false, message: "Something went wrong", Error: err.message })
     }
 }
-module.exports.loginUser=loginUser
-module.exports.userCreation=userCreation
+module.exports.loginUser = loginUser
+module.exports.userCreation = userCreation
